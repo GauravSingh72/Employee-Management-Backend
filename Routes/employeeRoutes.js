@@ -1,13 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const Employee = require("../models/Employee");
+const Employee = require("../Models/Employee");
 
-// Create an employee
 router.post("/", async (req, res) => {
   try {
     const { firstName, lastName, email, department, salary } = req.body;
 
-    // Create a new employee
     const employee = new Employee({
       firstName,
       lastName,
@@ -16,7 +14,6 @@ router.post("/", async (req, res) => {
       salary,
     });
 
-    // Save the employee to the database
     await employee.save();
 
     res.status(201).json({ message: "Employee created successfully" });
